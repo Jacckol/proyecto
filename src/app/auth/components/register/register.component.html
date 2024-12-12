@@ -1,0 +1,70 @@
+<hr>
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+
+        <!-- Contenedor con sombra y bordes redondeados -->
+        <div class="w-full sm:w-96" style="background-color: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); padding: 2rem;">
+            <div class="text-center mb-6">
+                <!-- Imagen de bienvenida -->
+                <div class="text-900 text-3xl font-semibold mb-3" style="color: #2C3E50;">¡Crea tu cuenta!</div>
+                <span class="text-600 font-medium" style="color: #7F8C8D;">Regístrate para comenzar</span>
+            </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="funRegistrar()">
+                <!-- Campo de nombre -->
+                <div class="mb-6">
+                    <label for="name" class="block text-xl font-medium mb-2" style="color: #34495E;">Nombre Completo</label>
+                    <input id="name" type="text" formControlName="name" placeholder="Tu nombre completo" pInputText 
+                        class="w-full mb-4 p-3 rounded-lg shadow-sm border border-gray-300 focus:ring-2 focus:ring-blue-400" 
+                        style="outline: none;" />
+                    <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-red-500 text-sm">
+                        El nombre es obligatorio.
+                    </div>
+                </div>
+
+                <!-- Campo de correo electrónico -->
+                <div class="mb-6">
+                    <label for="email" class="block text-xl font-medium mb-2" style="color: #34495E;">Correo Electrónico</label>
+                    <input id="email" type="email" formControlName="email" placeholder="Correo electrónico" pInputText 
+                        class="w-full mb-4 p-3 rounded-lg shadow-sm border border-gray-300 focus:ring-2 focus:ring-blue-400" 
+                        style="outline: none;" />
+                    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-red-500 text-sm">
+                        El correo es obligatorio y debe ser válido.
+                    </div>
+                </div>
+
+                <!-- Campo de contraseña -->
+                <div class="mb-6">
+                    <label for="password" class="block text-xl font-medium mb-2" style="color: #34495E;">Contraseña</label>
+                    <p-password id="password" formControlName="password" placeholder="Contraseña" 
+                        styleClass="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400" 
+                        [style]="{outline: 'none'}"></p-password>
+                    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500 text-sm">
+                        La contraseña es obligatoria.
+                    </div>
+                </div>
+
+                <!-- Confirmar contraseña -->
+                <div class="mb-6">
+                    <label for="confirmPassword" class="block text-xl font-medium mb-2" style="color: #34495E;">Confirmar Contraseña</label>
+                    <p-password id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmar Contraseña" 
+                        styleClass="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400" 
+                        [style]="{outline: 'none'}"></p-password>
+                    <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="text-red-500 text-sm">
+                        Las contraseñas no coinciden.
+                    </div>
+                </div>
+
+                <!-- Aceptar términos y condiciones -->
+                <div class="flex items-center mb-6">
+                    <input id="terms" type="checkbox" formControlName="terms" class="mr-2" />
+                    <label for="terms" style="color: #34495E;">Acepto los <a href="#" class="text-blue-500 hover:underline">términos y condiciones</a></label>
+                </div>
+
+                <!-- Botón de Registro -->
+                <button pButton pRipple label="Registrarse" class="w-full p-3 text-xl rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600 transition duration-200" 
+                    [disabled]="!registerForm.valid" type="submit"></button>
+            </form>
+        </div>
+    </div>
+</div>

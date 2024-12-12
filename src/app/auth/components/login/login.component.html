@@ -1,0 +1,50 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <!-- Contenedor con sombra y bordes redondeados -->
+        <div class="w-full sm:w-96" style="background-color: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); padding: 2rem;">
+            <div class="text-center mb-6">
+                <!-- Imagen de bienvenida -->
+                <div class="text-900 text-3xl font-semibold mb-3" style="color: #2C3E50;">¡Bienvenido de nuevo!</div>
+                <span class="text-600 font-medium" style="color: #7F8C8D;">Inicia sesión para continuar</span>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="funIngresar()">
+                <!-- Campo de correo electrónico -->
+                <div class="mb-6">
+                    <label for="email1" class="block text-xl font-medium mb-2" style="color: #34495E;">Correo Electrónico</label>
+                    <input id="email1" type="email" formControlName="email" placeholder="Correo electrónico" pInputText 
+                        class="w-full mb-4 p-3 rounded-lg shadow-sm border border-gray-300 focus:ring-2 focus:ring-blue-400" 
+                        style="outline: none;" />
+                    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-500 text-sm">
+                        El correo es obligatorio y debe ser válido.
+                    </div>
+                </div>
+
+                <!-- Campo de contraseña -->
+                <div class="mb-6">
+                    <label for="password1" class="block text-xl font-medium mb-2" style="color: #34495E;">Contraseña</label>
+                    <p-password id="password1" formControlName="password" placeholder="Contraseña" 
+                        styleClass="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400" 
+                        [style]="{outline: 'none'}"></p-password>
+                    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-500 text-sm">
+                        La contraseña es obligatoria.
+                    </div>
+                </div>
+
+                <!-- Recordarme y Olvidé mi contraseña -->
+                <div class="flex items-center justify-between mb-6 gap-4">
+                    <div class="flex items-center">
+                        <input id="rememberme1" type="checkbox" formControlName="rememberMe" class="mr-2" />
+                        <label for="rememberme1" style="color: #34495E;">Recuerdame</label>
+                    </div>
+                    <!-- Aquí cambiaremos la redirección -->
+                    <a class="text-blue-500 font-medium hover:underline ml-4" [routerLink]="['/auth/register']">Registrarse</a>
+                </div>
+
+                <!-- Botón de Iniciar sesión -->
+                <button pButton pRipple label="Iniciar sesión" class="w-full p-3 text-xl rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600 transition duration-200" 
+                    [disabled]="!loginForm.valid" type="submit"></button>
+            </form>
+        </div>
+    </div>
+</div>

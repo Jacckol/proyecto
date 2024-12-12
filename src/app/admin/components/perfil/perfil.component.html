@@ -1,0 +1,99 @@
+<div class="card px-6 py-6">
+    <h1>Perfil</h1>
+
+    <!-- Barra de herramientas -->
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <!-- Aquí puedes agregar más elementos si lo deseas -->
+        </ng-template>
+    </p-toolbar>
+    
+    <!-- Tabla de perfil -->
+    <p-table #dt [value]="items" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+        <!-- Encabezados de la tabla -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+
+        <!-- Celdas de la tabla -->
+        <ng-template pTemplate="body" let-persona>
+            <tr>
+                <td>{{ persona.id }}</td>
+                <td>{{ persona.nombre }}</td>
+                <td>{{ persona.email }}</td>
+                <td>
+                    <!-- Botones de acción -->
+                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editarPerfil(persona)">
+                    </button>
+                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        (click)="eliminarPerfil(persona)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <!-- Modal para editar perfil -->
+    <p-dialog [(visible)]="mostrarEditor" header="Editar Perfil" [style]="{width: '50vw'}">
+        <style>
+            /* Estilos adicionales para mejorar la apariencia */
+            .p-fluid .p-field {
+                margin-bottom: 1.5rem; /* Separación adicional entre contenedores */
+            }
+    
+            .p-fluid .p-field input {
+                border-radius: 5px; /* Bordes redondeados para los inputs */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+                padding: 0.5rem; /* Espaciado dentro del input */
+            }
+    
+            .p-fluid .p-field label {
+                font-weight: bold; /* Hacer las etiquetas más visibles */
+                margin-bottom: 0.5rem; /* Separar las etiquetas de los campos */
+                display: block; /* Forzar que las etiquetas estén en una línea separada */
+            }
+    
+            .p-footer button {
+                margin-right: 1rem; /* Espaciado entre los botones */
+                border-radius: 5px; /* Bordes redondeados para los botones */
+            }
+    
+            /* Ajuste de espaciado en el formulario */
+            .p-dialog .p-fluid {
+                padding: 2rem; /* Espaciado adicional dentro del formulario */
+            }
+        </style>
+    
+        <div class="p-fluid p-grid">
+            <!-- Campo ID -->
+            <div class="p-field p-col-12" *ngIf="perfilSeleccionado">
+                <label for="id" class="p-mb-2">ID</label>
+                <input id="id" pInputText [(ngModel)]="perfilSeleccionado.id" disabled class="p-inputtext-sm" />
+            </div>
+    
+            <!-- Campo Nombre -->
+            <div class="p-field p-col-12" *ngIf="perfilSeleccionado">
+                <label for="nombre" class="p-mb-2">Nombre</label>
+                <input id="nombre" pInputText [(ngModel)]="perfilSeleccionado.nombre" class="p-inputtext-sm" />
+            </div>
+    
+            <!-- Campo Email -->
+            <div class="p-field p-col-12" *ngIf="perfilSeleccionado">
+                <label for="email" class="p-mb-2">Email</label>
+                <input id="email" pInputText [(ngModel)]="perfilSeleccionado.email" class="p-inputtext-sm" />
+            </div>
+        </div>
+    
+        <!-- Botones de acción -->
+        <p-footer>
+            <button pButton type="button" label="Guardar" icon="pi pi-check" (click)="guardarEdicion()" class="p-button-success"></button>
+            <button pButton type="button" label="Cancelar" icon="pi pi-times" (click)="cerrarEditor()" class="p-button-secondary"></button>
+        </p-footer>
+    </p-dialog>
+    
