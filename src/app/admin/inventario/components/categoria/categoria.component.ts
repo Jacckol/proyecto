@@ -33,9 +33,9 @@ export class CategoriaComponent implements OnInit {
   ngOnInit(): void {}
 
   mostrarDialog() {
-    this.categoriaForm.reset(); // Resetea el formulario
-    this.categoria_id = -1; // Reinicia el ID para nueva categoría
-    this.dialog_visible = true; // Abre el diálogo
+    this.categoriaForm.reset();
+    this.categoria_id = -1; 
+    this.dialog_visible = true; 
   }
 
   guardarCategoria() {
@@ -51,7 +51,7 @@ export class CategoriaComponent implements OnInit {
     };
 
     if (this.categoria_id > 0) {
-      // Editar categoría existente
+     
       const index = this.categorias.findIndex(cat => cat.id === this.categoria_id);
       this.categorias[index] = nuevaCategoria;
     } else {
@@ -59,17 +59,17 @@ export class CategoriaComponent implements OnInit {
       this.categorias.push(nuevaCategoria);
     }
 
-    this.dialog_visible = false; // Cierra el diálogo
-    this.categoriaForm.reset(); // Limpia el formulario
+    this.dialog_visible = false; 
+    this.categoriaForm.reset(); 
   }
 
   editarCategoria(cat: Categoria) {
-    this.categoria_id = cat.id; // Almacena el ID de la categoría a editar
+    this.categoria_id = cat.id; 
     this.categoriaForm.setValue({
       nombre: cat.nombre,
       detalle: cat.detalle,
     });
-    this.dialog_visible = true; // Abre el diálogo
+    this.dialog_visible = true; 
   }
 
   eliminarCategoria(cat: Categoria) {

@@ -14,13 +14,15 @@ import { AppLayoutModule } from './layout/app.layout.module';
 import { CategoriaService } from './inventario/services/categoria.service'; 
 import { ProductoService } from './inventario/services/producto.service'; 
 import { InventarioModule } from './inventario/inventario.module'; 
-import { PedidoModule } from './pedido/pedido.module'; // Importa PedidoModule
+import { PedidoModule } from './pedido/pedido.module'; 
+import { ListaPedidoComponent } from './pedido/components/lista-pedido/lista-pedido.component';  // Importa aquí el componente correctamente
 
 @NgModule({
   declarations: [
     PerfilComponent,
     AdministradorComponent,
-    LayoutComponent
+    LayoutComponent,
+    ListaPedidoComponent  
   ],
   imports: [
     CommonModule,

@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { CategoriaComponent } from './inventario/components/categoria/categoria.component';
-import { LayoutComponent } from './layout/layout.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { ProductoComponent } from './inventario/components/producto/producto.component';
+import { ListaPedidoComponent } from './pedido/components/lista-pedido/lista-pedido.component'; // Importa el componente
 
 const routes: Routes = [
   {
@@ -23,7 +23,10 @@ const routes: Routes = [
         path: 'producto',
         component: ProductoComponent
       },
-      
+      {
+        path: 'pedido', // Nueva ruta
+        component: ListaPedidoComponent
+      }
     ]
   }
 ];
